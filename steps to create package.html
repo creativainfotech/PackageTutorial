@@ -1,90 +1,150 @@
-1) mkdir -p packages/creativa/laravelgenerator/src
-2)cd into the packages/creativa/laravelgenerator directory and execute the "composer init" command
-3) Once the package has been initialized, you’ll find a new vendor directory and composer.json file inside the inspire directory. Open the composer.json file
-4) The final state of the composer.json file should be as follows:
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ol>
+      <li><b>Install Fresh Laravel</b></li>
+      <p></p>
+      <li><b> Create directories</b></li>
+
+      <p>mkdir -p packages/creativa/laravelgenerator/src</p>
+      <li><b>Run Command</b></li>
+      <p>
+        <b>cd packages/creativa/laravelgenerator</b> and then execute the
+        <b>"composer init"</b>
+
+        command
+      </p>
+      <li><b>Open File (composer.json)</b></li>
+      <p>
+        Once the package has been initialized, you’ll find a new vendor
+        directory and composer. json file inside the laravelgenerator directory.
+        Open the <b>composer.json file</b>
+      </p>
+      <li>
+        <b>The final state of the composer.json file should be as follows:</b>
+      </li>
+      <pre>
 {
-    "name": "creativa/laravelgenerator",
-    "description": "it is generator for laravel code",
-    "type": "library",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Creativa\\Laravelgenerator\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Creativa Infotech"
-        }
-    ],
-    "require": {},
-     "extra": {
-        "laravel": {
-          "providers": [
-            "Creativa\\Laravelgenerator\\Providers\\LaravelGeneratorServiceProvider"
-          ]
-        }
-      }
-}
-
-5) Adding a Service Provider to Your Package
-6) create "laravelgeneratorconfig.php" in "config" folder in "src" folder
-7)
-Create a new file src/Providers/LaravelGeneratorServiceProvider.php and put the following code in it:
-<?php
-namespace Creativa\Laravelgenerator\Providers;
-
-use Illuminate\Support\ServiceProvider;
-
-class LaravelGeneratorServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        // <!-- $this->commands([
-        //     CreateAdminAuth::class,
-        //     InstallAdminLTE::class,
-
-        // ]); -->
-
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        if ($this->app->runningInConsole()) {
-            $configPath = __DIR__.'/../config/laravelgeneratorconfig.php';
-            $this->publishes([
-                $configPath => config_path('laravelgeneratorconfig.php'),
-            ], 'laravelgeneratorconfig');
-        }
-    }
-}
-8) Finally, Test it in your existing project
-Put the following code to your main composer.json (in your project's root). and hit composer update
- "require": {
-         "creativa/laravelgenerator": "dev-main",
-             
-    },
- "repositories": [
-        {
-            "type": "path",
-            "url": "packages/creativa/laravelgenerator"
+            "name": "creativa/laravelgenerator",
+            
+            "description": "it is generator for laravel code",
+            
+            "type": "library",
+            
+            "license": "MIT",
+            
+            "autoload": {
+            
+                "psr-4": {
+            
+                    "Creativa\\Laravelgenerator\\": "src/"
+            
+                }
+            
+            },
+            
+            "authors": [
+            
+            {
+            
+                "name": "Creativa Infotech"
+            
+            }
+            
+            ],
+            
+            "require": {},
+            
+            "extra": {
+            
+                "laravel": {
+            
+                    "providers": [
+            
+                    "Creativa\\Laravelgenerator\\Providers\\LaravelGeneratorServiceProvider"
+            
+                    ]
            
+                }
+           
+            }
+        
         }
-    ],
+        </pre
+      >
+      <li><b>Create Config File to manage your .env file</b></li>
+      <p>
+    create <b>"laravelgeneratorconfig.php"</b> in <b>"config"</b> folder in <b>"src"</b> folder
+      </p>
+      <li><b>Adding a Service Provider to Your Package.</b></li>
+      <p>
+        Create a new file <b>src/Providers/LaravelGeneratorServiceProvider.php</b> and
+        put the following code in it:
+      </p>
+      <pre><?php
+        namespace Creativa\Laravelgenerator\Providers;
+        
+        use Illuminate\Support\ServiceProvider;
+        
+        class LaravelGeneratorServiceProvider extends ServiceProvider
+        {
+            /**
+             * Register any application services.
+             *
+             * @return void
+             */
+            public function register()
+            {
+        
+            } 
+             /** * Bootstrap any application services. * * 
+        
+             @return void */ 
+        
+             public function boot() { 
+        
+                if($this->app->runningInConsole()) { 
+        
+                    $configPath =__DIR__.'/../config/laravelgeneratorconfig.php'; 
+        
+                    $this->publishes([$configPath => config_path('laravelgeneratorconfig.php'), ],'laravelgeneratorconfig'); 
+            
+                } 
+        
+            } 
+        }
+    </pre>
+      <li><b>Finally, Test it in your existing
+        project Put the following code to your main composer.json (in your project's
+        root). </b></li>
+      <pre>
+        "require": { 
+        
+            "creativa/laravelgenerator": "dev-main", 
+        }, 
+        
+        "repositories": [ { 
+        
+            "type": "path", "url":
 
-9) Run Composer update
-10)
- To publish service provider run " php artisan vendor:publish"
- 
+        "packages/creativa/laravelgenerator" 
 
+    } ],
+</pre>
+      <li><b> Run Composer update</b></li>
+      <p></p>
+      <li><b>publish service provider</b></li>
+      <p>run " php artisan vendor:publish"</p>
+    </ol>
 
+       
+  9) Run Composer update 10) To
+    publish service provider run " php artisan vendor:publish"
+  </body>
+</html>
